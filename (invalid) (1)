@@ -1,0 +1,21 @@
+@app.route('/greet/<name>')
+def greet(name):
+    return f"Bonjour, {name} !"
+    from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def form():
+    return '''
+        <form action="/result" method="POST">
+            <label for="name">Entrez votre nom :</label>
+            <input type="text" id="name" name="name">
+            <button type="submit">Envoyer</button>
+        </form>
+    '''
+
+@app.route('/result', methods=['POST'])
+def result():
+    name = request.form.get('name')
+    return f"Bonjour, {name} ! Merci d'avoir soumis le formulaire."
