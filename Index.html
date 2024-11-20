@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Récupération de données</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Récupération de Données</h2>
+        <p>Entrez des informations et récupérez des données via l'API :</p>
+        <input type="text" id="userData" placeholder="Entrez votre donnée">
+        <button onclick="fetchData()">Récupérer les données</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function fetchData() {
+            let userInput = document.getElementById("userData").value;
+            if (!userInput) {
+                alert("Veuillez entrer une donnée !");
+                return;
+            }
+
+            // Exemple d'API pour récupérer des données (vous pouvez remplacer par une vraie API)
+            fetch(`https://api.exemple.com/data?query=${userInput}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("result").innerHTML = JSON.stringify(data);
+                })
+                .catch(error => {
+                    document.getElementById("result").innerHTML = "Erreur de récupération des données.";
+                    console.error(error);
+                });
+      
+        }
+    </script>
+</body>
+</html>
+
+theme: jekyll-theme-slate
